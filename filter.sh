@@ -13,7 +13,7 @@ fi
 
 NAME_WITHOUT_CSV=${1%.csv}
 
-#truncamos 1500mb usando head pero manteniendo la primera linea
-head -n 1 $1 > $NAME_WITHOUT_CSV"_trunc.csv"
-#cogemos todas las filas del año 2018 y 2019
-grep -E "2018|2019" $1 >> $NAME_WITHOUT_CSV"_trunc.csv"
+#truncamos 1500mb del archivo usando head
+head -c 1500000 $1 > $NAME_WITHOUT_CSV"_truncated.csv"
+# borrar ultima linea
+sed -i '$ d' $NAME_WITHOUT_CSV"_truncated.csv"
